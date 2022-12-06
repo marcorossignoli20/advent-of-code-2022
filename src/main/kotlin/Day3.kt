@@ -32,20 +32,19 @@ class Day3 {
             val lines = readFile("input3.txt")
             var totalPriority = 0
             var currentLines = emptyList<String>().toMutableList()
+            var c = 0
 
-            lines.groupBy {  }
-
-            lines.forEachIndexed { i, line ->
-                if(i != 0 && i.mod(3) == 0){
+            lines.forEach { line ->
+                c++
+                currentLines.add(line)
+                if(c.mod(3) == 0){
                     currentLines[0].forEach { char: Char ->
-                        if(currentLines[1].contains(char) && currentLines[2].contains(char)){
-                            totalPriority += alphabet.indexOf(char) + 1
+                        if(currentLines[1].contains(char, ignoreCase = false) && currentLines[2].contains(char, ignoreCase = false)){
+                            totalPriority += alphabet.indexOf(char)+1
+                            println("$currentLines \n$char \n${alphabet.indexOf(char)+1}")
                         }
                     }
                     currentLines = emptyList<String>().toMutableList()
-                    currentLines.add(line)
-                } else {
-                    currentLines.add(line)
                 }
             }
             println(totalPriority)
