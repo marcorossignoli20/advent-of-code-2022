@@ -32,10 +32,16 @@ class Day5 {
         private fun moveCrates(n: Int, source: Int, destination: Int) {
             val sourceStack = stacksMap[source]!!
             val destinationStack = stacksMap[destination]!!
+            val tempStack = ArrayDeque<Char>()
             for (i in 1..n) {
                 val curr = sourceStack.removeLast()
+                tempStack.add(curr)
+            }
+            for (i in 1..n) {
+                val curr = tempStack.removeLast()
                 destinationStack.addLast(curr)
             }
+
         }
     }
 }
